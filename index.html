@@ -3,53 +3,68 @@
     <head>
         <title>Vroom Vroom Car Washing</title>
     </head>
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif; /* Sets a global font */
+        }
+      </style>
+    <style>
+        body {
+          background-color: #045174;
+        }
+      </style>
+      <style>
+        body {
+          color: white;
+        }
+      </style>
     <body>
-        <h1>Welcome to Vroom Vroom Car Washing!</h1>
+        <img src="vroomvroom.png" width="200">
+        <h1>Welcome to Vroom Vroom Car Wash!</h1>
         <h2>Our Services</h2>
         <form method="POST" netlify>
             <fieldset>
                 <legend>Select a Wash Option</legend>
                 <ul>
                     <li>
-                        <input type="radio" id="basic" name="service" value="basic" checked>
+                        <input type="radio" id="basic" name="service" value="basic">
                         <label for="basic">Basic Wash - $10 <a href="basic.html">ⓘ</a></label>
                     </li>
                     <li>
                         <input type="radio" id="interior" name="service" value="interior">
-                        <label for="deluxe">Interior + Basic Wash - $20 <a href="interior.html">ⓘ</a></label>
+                        <label for="deluxe">Interior Wash - $15 <a href="interior.html">ⓘ</a></label>
                      </li>
-                    <li>
-                         <input type="radio" id="detailing" name="service" value="detailing">
-                        <label for="premium">Detailing + Interior + Basic Wash - $30 <a href="detailing.html">ⓘ</a></label>
-                    </li>
+                     <li>
+                        <input type="radio" id="basic + interior" name="service" value="deluxe">
+                        <label for="basic">Basic + Interior Wash - $25 <a href="basic_interior.html">ⓘ</a></label>
+                     </li>
                 </ul>
             </fieldset>
             <fieldset>
                 <legend>Information</legend>
                     <ul>
                     <div class="form-group">
-                        <input type="text" id="street_address" name="street_address" autocomplete="street-address" required>
-                        <label for="street_address">Street Address</label>
+                        <input type="text" placeholder="Address" id="street_address" name="street_address" autocomplete="street-address" required>
+                       
                     </div>
                     <div class="form-group">
-                        <input type="text" id="city" name="city" autocomplete="address-level2" required>
-                        <label for="city">City</label>
+                        <input type="text" placeholder="City" id="city" name="city" autocomplete="address-level2" required>
+                        
                     </div>
                     <div class="form-group">
-                        <input type="text" id="zip_code" name="zip_code" autocomplete="postal-code" required pattern="[0-9]*">
-                        <label for="zip_code">ZIP Code</label>
+                        <input type="text" placeholder="ZIP" id="zip_code" name="zip_code" autocomplete="postal-code" required pattern="[0-9]*">
+                        
                     </div>
                     </ul>
             </fieldset>
             <fieldset>
-                <legend>Date</legend>
+                <legend>Date(hours are 4-6PM on weekdays and 10AM-5PM on weekends)</legend>
                 <div>
-                    <input type="text" id="date" required>
-                    <label for="date">What day do you want us to come?</label>
+                    <input type="text" placeholder="Date" id="date" required>
+                    
                 </div>
                 <div>
-                    <input type="text" id="time" required>
-                    <label for="time">What time do you want us to come?</label>
+                    <input type="text" placeholder="Time" id="time" required>
                 </div>
             </fieldset>
             <button type="submit">Submit</button>
