@@ -1,58 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Vroom Vroom Car Washing</title>
-    </head>
-    <body>
-        <h1>Welcome to Vroom Vroom Car Washing!</h1>
-        <h2>Our Services</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vroom Vroom Car Washing</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: #f0f4f8;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1.5rem 2.5rem;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            margin-top: 0.5rem;
+            font-size: 1.15rem;
+            opacity: 0.85;
+        }
+
+        /* Container */
+        .container {
+            max-width: 720px;
+            margin: -1.5rem auto 3rem;
+            padding: 0 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #1e3a5f;
+        }
+
+        /* Service Options */
+        .services { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .services li { position: relative; }
+        .services input[type="radio"] { display: none; }
+        .services label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .services input[type="radio"]:checked + label {
+            border-color: #2d6a9f;
+            background: #edf4fc;
+        }
+        .services label:hover { border-color: #a0bee0; }
+        .service-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .service-icon.basic { background: #dbeafe; }
+        .service-icon.interior { background: #d1fae5; }
+        .service-icon.detailing { background: #fef3c7; }
+        .service-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .price-tag {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e3a5f;
+        }
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+        .info-link:hover { background: #cbd5e0; }
+
+        /* Form Fields */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-row.full { grid-template-columns: 1fr; }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .field label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .field input, .field select {
+            padding: 0.7rem 0.85rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            outline: none;
+            font-family: inherit;
+        }
+        .field input:focus, .field select:focus {
+            border-color: #2d6a9f;
+        }
+
+        /* Submit */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            letter-spacing: 0.01em;
+        }
+        .submit-btn:hover { opacity: 0.92; }
+        .submit-btn:active { transform: scale(0.99); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        @media (max-width: 540px) {
+            .hero h1 { font-size: 1.75rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>Vroom Vroom Car Washing</h1>
+        <p>Professional mobile car wash &mdash; we come to you!</p>
+    </header>
+
+    <main class="container">
         <form method="POST" netlify>
-            <fieldset>
-                <legend>Select a Wash Option</legend>
-                <ul>
+            <!-- Service Selection -->
+            <div class="card">
+                <h2>Choose Your Wash</h2>
+                <ul class="services">
                     <li>
                         <input type="radio" id="basic" name="service" value="basic" checked>
-                        <label for="basic">Basic Wash - $10 <a href="basic.html">ⓘ</a></label>
+                        <label for="basic">
+                            <span class="service-name">
+                                <span class="service-icon basic">&#x1F6BF;</span>
+                                Basic Wash
+                            </span>
+                            <span class="service-price">
+                                <span class="price-tag">$10</span>
+                                <a href="basic.html" class="info-link" title="Learn more">i</a>
+                            </span>
+                        </label>
                     </li>
                     <li>
                         <input type="radio" id="interior" name="service" value="interior">
-                        <label for="deluxe">Interior + Basic Wash - $20 <a href="interior.html">ⓘ</a></label>
-                     </li>
+                        <label for="interior">
+                            <span class="service-name">
+                                <span class="service-icon interior">&#x2728;</span>
+                                Interior + Basic Wash
+                            </span>
+                            <span class="service-price">
+                                <span class="price-tag">$20</span>
+                                <a href="interior.html" class="info-link" title="Learn more">i</a>
+                            </span>
+                        </label>
+                    </li>
                     <li>
-                         <input type="radio" id="detailing" name="service" value="detailing">
-                        <label for="premium">Detailing + Interior + Basic Wash - $30 <a href="detailing.html">ⓘ</a></label>
+                        <input type="radio" id="detailing" name="service" value="detailing">
+                        <label for="detailing">
+                            <span class="service-name">
+                                <span class="service-icon detailing">&#x1F31F;</span>
+                                Full Detailing Package
+                            </span>
+                            <span class="service-price">
+                                <span class="price-tag">$30</span>
+                                <a href="detailing.html" class="info-link" title="Learn more">i</a>
+                            </span>
+                        </label>
                     </li>
                 </ul>
-            </fieldset>
-            <fieldset>
-                <legend>Information</legend>
-                    <ul>
-                    <div class="form-group">
-                        <input type="text" id="street_address" name="street_address" autocomplete="street-address" required>
+            </div>
+
+            <!-- Address -->
+            <div class="card">
+                <h2>Your Address</h2>
+                <div class="form-row full" style="margin-bottom: 1rem;">
+                    <div class="field">
                         <label for="street_address">Street Address</label>
+                        <input type="text" id="street_address" name="street_address" autocomplete="street-address" placeholder="123 Main St" required>
                     </div>
-                    <div class="form-group">
-                        <input type="text" id="city" name="city" autocomplete="address-level2" required>
+                </div>
+                <div class="form-row">
+                    <div class="field">
                         <label for="city">City</label>
+                        <input type="text" id="city" name="city" autocomplete="address-level2" placeholder="Springfield" required>
                     </div>
-                    <div class="form-group">
-                        <input type="text" id="zip_code" name="zip_code" autocomplete="postal-code" required pattern="[0-9]*">
+                    <div class="field">
                         <label for="zip_code">ZIP Code</label>
+                        <input type="text" id="zip_code" name="zip_code" autocomplete="postal-code" placeholder="12345" required pattern="[0-9]*">
                     </div>
-                    </ul>
-            </fieldset>
-            <fieldset>
-                <legend>Date</legend>
-                <div>
-                    <input type="text" id="date" required>
-                    <label for="date">What day do you want us to come?</label>
                 </div>
-                <div>
-                    <input type="text" id="time" required>
-                    <label for="time">What time do you want us to come?</label>
+            </div>
+
+            <!-- Schedule -->
+            <div class="card">
+                <h2>Pick a Date &amp; Time</h2>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="field">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
                 </div>
-            </fieldset>
-            <button type="submit">Submit</button>
+            </div>
+
+            <button type="submit" class="submit-btn">Book My Wash</button>
         </form>
-    </body>
+    </main>
+
+    <footer>
+        &copy; 2026 Vroom Vroom Car Washing. All rights reserved.
+    </footer>
+</body>
 </html>
